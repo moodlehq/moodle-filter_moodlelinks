@@ -32,8 +32,8 @@ class filter_moodlelinks extends moodle_text_filter {
         $text = str_ireplace(' Planet Moodle',  ' <a title="Auto-link" href="http://planet.moodle.org/">Planet Moodle</a>', $text);
         $text = str_ireplace(' MOOCH', ' <a title="Moodle.org Open Community Hub" href="http://hub.moodle.org/">MOOCH</a>', $text);
 
-        $text = eregi_replace("cvs:/([[:alnum:]\./_-]*)([[:alnum:]/])",
-                "<a title=\"Auto-link to Moodle CVS repository\" href=\"http://cvs.moodle.org/\\1\\2\">cvs:/\\1\\2</a>", 
+        $text = preg_replace("|cvs:/([[:alnum:]\./_-]*)([[:alnum:]/])|i",
+                "<a title=\"Auto-link to Moodle CVS repository\" href=\"http://cvs.moodle.org/\\1\\2\">cvs:/$1$2</a>",
                 $text);
 
         // Tim's spiffy new regexp, see test.php in this directory
@@ -47,12 +47,12 @@ class filter_moodlelinks extends moodle_text_filter {
                 '<a title="Auto-link to Moodle Tracker" href="http://tracker.moodle.org/browse/$0">$0</a>',
                 $text);
 
-        $text = eregi_replace("bug ([0-9]+)",
-                "<a title=\"Auto-link to Moodle Tracker\" href=\"http://tracker.moodle.org/browse/MDL-\\1\">MDL-\\1</a>", 
+        $text = preg_replace("/bug ([0-9]+)/i",
+                "<a title=\"Auto-link to Moodle Tracker\" href=\"http://tracker.moodle.org/browse/MDL-\\1\">MDL-$1</a>",
                 $text);
 
-        $text = eregi_replace("bug #([0-9]+)",
-                "<a title=\"Auto-link to Moodle Tracker\" href=\"http://tracker.moodle.org/browse/MDL-\\1\">MDL-\\1</a>", 
+        $text = preg_replace("/bug #([0-9]+)/i",
+                "<a title=\"Auto-link to Moodle Tracker\" href=\"http://tracker.moodle.org/browse/MDL-\\1\">MDL-$1</a>",
                 $text);
 
         return $text;
