@@ -26,32 +26,70 @@ defined('MOODLE_INTERNAL') || die();
 
 class filter_moodlelinks extends moodle_text_filter {
 
+    // All the phrases to convert to links.
+    // Format: phrase => array(<a> tag, casesensitive, fullmatch, forcephrase).
+    protected $links = array(
+        // Some are case-sensitive, non full-match
+        'Moodle download' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
+        'download Moodle' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
+        'download page' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
+
+        // With this being full-match
+        'Using Moodle' => array('<a title="Auto-link" href="https://moodle.org/course/view.php?id=5">', true, true),
+
+        // The rest are case-insensitive and full-match (and using forced phrase)
+        'moodle roadmap' => array('<a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">', false, true, 'Moodle Roadmap'),
+        'moodle themes' => array('<a title="Auto-link" href="https://moodle.org/themes">', false, true, 'Moodle Themes'),
+        'moodle partners' => array('<a title="Auto-link" href="http://moodle.com/partners">', false, true, 'Moodle Partners'),
+        'moodle partner' => array('<a title="Auto-link" href="http://moodle.com/partners">', false, true, 'Moodle Partner'),
+        'moodle tracker' => array('<a title="Auto-link" href="https://tracker.moodle.org">', false, true, 'Moodle Tracker'),
+        'moodle jobs' => array('<a title="Auto-link" href="https://moodle.org/jobs">', false, true, 'Moodle jobs'),
+        'moodle books' => array('<a title="Auto-link" href="https://moodle.org/books">', false, true, 'Moodle books'),
+        'mooch' => array('<a title="Moodle.org Open Community Hub" href="http://hub.moodle.org">', false, true, 'MOOCH'),
+        'planet moodle' => array('<a title="Auto-link" href="http://planet.moodle.org">', false, true, 'Planet Moodle'),
+        'moodle plugins' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Moodle plugins'),
+        'plugins directory' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Plugins directory'),
+    );
+
     public function filter($text, array $options = array()) {
 
+        // Trivial-cache - keyed on $cachedcontextid.
+        static $cachedcontextid;
+        static $linklist;
 
-        $text = str_replace('Moodle download', '<a title="Auto-link" href="http://download.moodle.org/">Moodle download</a>', $text);
+        // Initialise/invalidate our trivial cache if dealing with a different context.
+        if (!isset($cachedcontextid) || $cachedcontextid !== $this->context->id) {
+            $cachedcontextid = $this->context->id;
+            $linklist = array();
+        }
 
-        $text = str_replace('download Moodle', '<a title="Auto-link" href="http://download.moodle.org/">download Moodle</a>', $text);
-        $text = str_replace('download page', '<a title="Auto-link" href="http://download.moodle.org/">download page</a>', $text);
+        // Define the links if needed (may be cached).
+        if (empty($linklist)) {
+            foreach ($this->links as $search => $replace) {
+                if (!isset($replace[0])) {
+                    continue; // Skip if the target a tag is not specified.
+                }
+                $atagbegin = $replace[0];
+                $atagend = '</a>';
+                $casesensitive = isset($replace[1]) ? $replace[1] : false;
+                $fullmatch = isset($replace[2]) ? $replace[2] : true;
+                $forcephrase = isset($replace[3]) ? $replace[3] : null;
+                $linklist[] = new filterobject($search, $atagbegin, $atagend, $casesensitive, $fullmatch, $forcephrase);
+            }
+            // Remove dupes, just in case.
+            $linklist = filter_remove_duplicates($linklist);
+        }
 
-        $text = str_ireplace(' Moodle roadmap', ' <a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">Moodle Roadmap</a>', $text);
-        $text = str_ireplace(' Moodle Themes', ' <a title="Auto-link" href="http://moodle.org/themes">Moodle Themes</a>', $text);
+        // Let's filter all the filter objects.
+        $text = filter_phrases($text, $linklist);
 
-
-        $text = str_replace(' Using Moodle', ' <a title="Auto-link" href="http://moodle.org/course/view.php?id=5">Using Moodle</a>', $text);
-        $text = str_ireplace(' moodle partners', ' <a title="Auto-link" href="http://moodle.com/">Moodle Partners</a>', $text);
-        $text = str_ireplace(' moodle partner', ' <a title="Auto-link" href="http://moodle.com/">Moodle Partner</a>', $text);
-        $text = str_ireplace(' moodle tracker', ' <a title="Auto-link" href="http://tracker.moodle.org/">Moodle Tracker</a>', $text);
-        $text = str_ireplace(' Moodle jobs', ' <a title="Auto-link" href="http://moodle.org/jobs">Moodle jobs</a>', $text);
-        $text = str_ireplace(' Moodle books', ' <a title="Auto-link" href="http://moodle.org/books">Moodle books</a>', $text);
-        $text = str_ireplace(' MOOCH', ' <a title="Moodle.org Open Community Hub" href="http://hub.moodle.org/">MOOCH</a>', $text);
-        $text = str_ireplace(' Planet Moodle',  ' <a title="Auto-link" href="http://planet.moodle.org/">Planet Moodle</a>', $text);
-        $text = str_ireplace(' Moodle plugins', ' <a title="Auto-link" href="http://moodle.org/plugins/">Moodle plugins</a>', $text);
-        $text = str_ireplace(' Plugins directory', ' <a title="Auto-link" href="http://moodle.org/plugins/">Plugins directory</a>', $text);
-
+        // Some legacy links to the cvs repository.
+        // TODO: Take them out once the cvs repo is down.
         $text = preg_replace("|cvs:/([[:alnum:]\./_-]*)([[:alnum:]/])|i",
                 "<a title=\"Auto-link to Moodle CVS repository\" href=\"http://cvs.moodle.org/\\1\\2\">cvs:/$1$2</a>",
                 $text);
+
+        // TODO: Add links to the git repository
 
         // Tim's spiffy new regexp, see test.php in this directory
         $regexp = '#' .
@@ -61,7 +99,7 @@ class filter_moodlelinks extends moodle_text_filter {
                   '(?![^<]*</a>)' . // Try to avoid matching inside another link. Can be fooled by HTML like: <a href="..."><b>MDL-123</b></a>.
                   '#';
         $text = preg_replace($regexp,
-                '<a title="Auto-link to Moodle Tracker" href="http://tracker.moodle.org/browse/$0">$0</a>',
+                '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/$0">$0</a>',
                 $text);
 
         // New regexp from Matteo Scaramuccia, based on Tim's one above (MDLSITE-1146) for better handling "Bug XXXX" matches.
@@ -72,7 +110,7 @@ class filter_moodlelinks extends moodle_text_filter {
                   '(?![^<]*</a>)' . // Try to avoid matching inside another link. Can be fooled by HTML like: <a href="..."><b>Bug #123</b></a>.
                   '$i';
         $text = preg_replace($regexp,
-                '<a title="Auto-link to Moodle Tracker" href="http://tracker.moodle.org/browse/MDL-$1">$0</a>',
+                '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-$1">$0</a>',
                 $text);
 
         return $text;
