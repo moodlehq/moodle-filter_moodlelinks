@@ -35,22 +35,20 @@ class filter_moodlelinks extends moodle_text_filter {
         'download page' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
 
         // With this being full-match
-        'Using Moodle' => array('<a title="Auto-link" href="http://moodle.org/course/view.php?id=5">', true, true),
+        'Using Moodle' => array('<a title="Auto-link" href="https://moodle.org/course/view.php?id=5">', true, true),
 
         // The rest are case-insensitive and full-match (and using forced phrase)
         'moodle roadmap' => array('<a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">', false, true, 'Moodle Roadmap'),
-        'moodle themes' => array('<a title="Auto-link" href="http://moodle.org/themes">', false, true, 'Moodle Themes'),
-        'moodle partners' => array('<a title="Auto-link" href="http://moodle.com/partners/">', false, true, 'Moodle Partners'),
-        'moodle partner' => array('<a title="Auto-link" href="http://moodle.com/partners/">', false, true, 'Moodle Partner'),
-        'moodle tracker' => array('<a title="Auto-link" href="http://tracker.moodle.org/">', false, true, 'Moodle Tracker'),
-        'moodle jobs' => array('<a title="Auto-link" href="http://moodle.org/jobs">', false, true, 'Moodle jobs'),
-        'moodle books' => array('<a title="Auto-link" href="http://moodle.org/books">', false, true, 'Moodle books'),
-        'mooch' => array('<a title="Moodle.org Open Community Hub" href="http://hub.moodle.org/">', false, true, 'MOOCH'),
-        'planet moodle' => array('<a title="Auto-link" href="http://planet.moodle.org/">', false, true, 'Planet Moodle'),
-        'moodle plugins' => array('<a title="Auto-link" href="http://moodle.org/plugins/">', false, true, 'Moodle plugins'),
-        'plugins directory' => array('<a title="Auto-link" href="http://moodle.org/plugins/">', false, true, 'Plugins directory'),
-
-
+        'moodle themes' => array('<a title="Auto-link" href="https://moodle.org/themes">', false, true, 'Moodle Themes'),
+        'moodle partners' => array('<a title="Auto-link" href="http://moodle.com/partners">', false, true, 'Moodle Partners'),
+        'moodle partner' => array('<a title="Auto-link" href="http://moodle.com/partners">', false, true, 'Moodle Partner'),
+        'moodle tracker' => array('<a title="Auto-link" href="https://tracker.moodle.org">', false, true, 'Moodle Tracker'),
+        'moodle jobs' => array('<a title="Auto-link" href="https://moodle.org/jobs">', false, true, 'Moodle jobs'),
+        'moodle books' => array('<a title="Auto-link" href="https://moodle.org/books">', false, true, 'Moodle books'),
+        'mooch' => array('<a title="Moodle.org Open Community Hub" href="http://hub.moodle.org">', false, true, 'MOOCH'),
+        'planet moodle' => array('<a title="Auto-link" href="http://planet.moodle.org">', false, true, 'Planet Moodle'),
+        'moodle plugins' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Moodle plugins'),
+        'plugins directory' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Plugins directory'),
     );
 
     public function filter($text, array $options = array()) {
@@ -101,7 +99,7 @@ class filter_moodlelinks extends moodle_text_filter {
                   '(?![^<]*</a>)' . // Try to avoid matching inside another link. Can be fooled by HTML like: <a href="..."><b>MDL-123</b></a>.
                   '#';
         $text = preg_replace($regexp,
-                '<a title="Auto-link to Moodle Tracker" href="http://tracker.moodle.org/browse/$0">$0</a>',
+                '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/$0">$0</a>',
                 $text);
 
         // New regexp from Matteo Scaramuccia, based on Tim's one above (MDLSITE-1146) for better handling "Bug XXXX" matches.
@@ -112,7 +110,7 @@ class filter_moodlelinks extends moodle_text_filter {
                   '(?![^<]*</a>)' . // Try to avoid matching inside another link. Can be fooled by HTML like: <a href="..."><b>Bug #123</b></a>.
                   '$i';
         $text = preg_replace($regexp,
-                '<a title="Auto-link to Moodle Tracker" href="http://tracker.moodle.org/browse/MDL-$1">$0</a>',
+                '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-$1">$0</a>',
                 $text);
 
         return $text;
