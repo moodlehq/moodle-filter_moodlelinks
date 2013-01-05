@@ -40,8 +40,8 @@ class filter_moodlelinks extends moodle_text_filter {
         // The rest are case-insensitive and full-match (and using forced phrase)
         'moodle roadmap' => array('<a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">', false, true, 'Moodle Roadmap'),
         'moodle themes' => array('<a title="Auto-link" href="http://moodle.org/themes">', false, true, 'Moodle Themes'),
-        'moodle partners' => array('<a title="Auto-link" href="http://moodle.com/">', false, true, 'Moodle Partners'),
-        'moodle partner' => array('<a title="Auto-link" href="http://moodle.com/">', false, true, 'Moodle Partner'),
+        'moodle partners' => array('<a title="Auto-link" href="http://moodle.com/partners/">', false, true, 'Moodle Partners'),
+        'moodle partner' => array('<a title="Auto-link" href="http://moodle.com/partners/">', false, true, 'Moodle Partner'),
         'moodle tracker' => array('<a title="Auto-link" href="http://tracker.moodle.org/">', false, true, 'Moodle Tracker'),
         'moodle jobs' => array('<a title="Auto-link" href="http://moodle.org/jobs">', false, true, 'Moodle jobs'),
         'moodle books' => array('<a title="Auto-link" href="http://moodle.org/books">', false, true, 'Moodle books'),

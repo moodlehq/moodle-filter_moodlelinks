@@ -54,8 +54,8 @@ class filter_moodlelinks_testcase extends basic_testcase {
             'A MOODLE roadmapZ' => 'A MOODLE roadmapZ', // Not replaced, full-match search
             'AAMOODLE roadmap' => 'AAMOODLE roadmap', // Not replaced, full-match search
             'A MOODLE themes.' => 'A <a title="Auto-link" href="http://moodle.org/themes">Moodle Themes</a>.',
-            'A MOODLE partners,' => 'A <a title="Auto-link" href="http://moodle.com/">Moodle Partners</a>,',
-            'A MOODLE partner:' => 'A <a title="Auto-link" href="http://moodle.com/">Moodle Partner</a>:',
+            'A MOODLE partners,' => 'A <a title="Auto-link" href="http://moodle.com/partners/">Moodle Partners</a>,',
+            'A MOODLE partner:' => 'A <a title="Auto-link" href="http://moodle.com/partners/">Moodle Partner</a>:',
             'A MOODLE jobs/' => 'A <a title="Auto-link" href="http://moodle.org/jobs">Moodle jobs</a>/',
             '.MOODLE books' => '.<a title="Auto-link" href="http://moodle.org/books">Moodle books</a>',
             ',MoocH' => ',<a title="Moodle.org Open Community Hub" href="http://hub.moodle.org/">MOOCH</a>',
