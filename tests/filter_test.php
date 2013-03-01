@@ -98,8 +98,6 @@ class filter_moodlelinks_testcase extends basic_testcase {
 
             // Replaced cases by Tim's regexp
             'MDL-123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a>',
-            'MDLSITE-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLSITE-0">MDLSITE-0</a>',
-            'CONTRIB-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/CONTRIB-1234567890">CONTRIB-1234567890</a>',
             '<b>MDL-123</b>' => '<b><a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a></b>',
             'See MDL-1 for details!' => 'See <a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-1">MDL-1</a> for details!',
             'http://www.google.com.au/search?q=MDL-1' => 'http://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-1">MDL-1</a>',
@@ -118,7 +116,13 @@ class filter_moodlelinks_testcase extends basic_testcase {
             'Bug #123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug #123</a>',
             'bUg 123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">bUg 123</a>',
             '<b>Bug 123</b>' => '<b><a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a></b>',
-            'http://www.google.com.au/search?q=Bug 123' => 'http://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a>'
+            'http://www.google.com.au/search?q=Bug 123' => 'http://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a>',
+
+            // Links to other projects (CONTRIB, MDLSITE, MDLQA, MDLTEST)
+            'CONTRIB-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/CONTRIB-1234567890">CONTRIB-1234567890</a>',
+            'MDLSITE-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLSITE-0">MDLSITE-0</a>',
+            'MDLQA-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLQA-0">MDLQA-0</a>',
+            'MDLTEST-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLTEST-0">MDLTEST-0</a>',
         );
 
         $filter = new testable_filter_moodlelinks();
