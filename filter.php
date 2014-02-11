@@ -35,7 +35,7 @@ class filter_moodlelinks extends moodle_text_filter {
         'download page' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
 
         // With this being full-match
-        'Using Moodle' => array('<a title="Auto-link" href="https://moodle.org/course/view.php?id=5">', true, true),
+        //'Using Moodle' => array('<a title="Auto-link" href="https://moodle.org/course/view.php?id=5">', true, true),
 
         // The rest are case-insensitive and full-match (and using forced phrase)
         'moodle roadmap' => array('<a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">', false, true, 'Moodle Roadmap'),

@@ -47,7 +47,7 @@ class filter_moodlelinks_testcase extends basic_testcase {
             'Adownload MOODLEZ' => 'Adownload MOODLEZ', // Not replaced, case-sensitive search
             'Adownload pageZ' => 'A<a title="Auto-link" href="http://download.moodle.org/">download page</a>Z',
             'Adownload PAGEZ' => 'Adownload PAGEZ', // Not replaced, case-sensitive search
-            'A Using Moodle,' => 'A <a title="Auto-link" href="https://moodle.org/course/view.php?id=5">Using Moodle</a>,',
+            'A Using Moodle,' => 'A Using Moodle,',
             'A Using MoodleZ' => 'A Using MoodleZ', // Not replaced, full-match search
             'A Using MOODLE' => 'A Using MOODLE', // Not replaced, case-sensitive search
             'A MOODLE roadmap.' => 'A <a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">Moodle Roadmap</a>.',
