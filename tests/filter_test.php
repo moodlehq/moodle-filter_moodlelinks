@@ -119,11 +119,12 @@ class filter_moodlelinks_testcase extends basic_testcase {
             '<b>Bug 123</b>' => '<b><a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a></b>',
             'http://www.google.com.au/search?q=Bug 123' => 'http://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a>',
 
-            // Links to other projects (CONTRIB, MDLSITE, MDLQA, MDLTEST)
+            // Links to other projects (CONTRIB, MDLSITE, MDLQA, MDLTEST, MOBILE)
             'CONTRIB-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/CONTRIB-1234567890">CONTRIB-1234567890</a>',
             'MDLSITE-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLSITE-0">MDLSITE-0</a>',
             'MDLQA-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLQA-0">MDLQA-0</a>',
             'MDLTEST-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLTEST-0">MDLTEST-0</a>',
+            'MOBILE-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MOBILE-1234567890">MOBILE-1234567890</a>',
         );
 
         $filter = new testable_filter_moodlelinks();

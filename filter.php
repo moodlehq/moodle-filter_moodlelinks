@@ -94,7 +94,7 @@ class filter_moodlelinks extends moodle_text_filter {
 
         // Tim's spiffy new regexp, see test.php in this directory
         $regexp = '#' .
-                  '(?:MDL|MDLSITE|CONTRIB|MDLQA|MDLTEST)-\d+' . // The basic pattern we are trying to match (\d is any digit).
+                  '(?:MDL|MOBILE|MDLSITE|CONTRIB|MDLQA|MDLTEST)-\d+' . // The basic pattern we are trying to match (\d is any digit).
                   '\b' . // At the end of a word, That is, we don't want to match MDL-123xyz, but we don't care if we are followed by a space, punctionation or ...
                   '(?![^\'"<>]*[\'"]\s*(?:\w+=[\'"][^\'"]*[\'"])*\\\?>)' . // Try to avoid matching if we are inside a HTML attribute. relies on having moderately well-formed HTML.
                   '(?![^<]*</a>)' . // Try to avoid matching inside another link. Can be fooled by HTML like: <a href="..."><b>MDL-123</b></a>.
