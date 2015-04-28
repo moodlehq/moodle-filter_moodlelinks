@@ -107,17 +107,15 @@ class filter_moodlelinks_testcase extends basic_testcase {
             '<br /> This should be working - MDL-123. Please vote for it if you\'d like... <br />' => '<br /> This should be working - <a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a>. Please vote for it if you\'d like... <br />',
             "The bug 'MDL-123' is > (more serious than)" => "The bug '<a title=\"Auto-link to Moodle Tracker\" href=\"https://tracker.moodle.org/browse/MDL-123\">MDL-123</a>' is > (more serious than)",
 
-            // Not replaced by the sister (Bug XXXXX) regexp to the tracker. MDLSITE-1146
+            // The texts like 'bug #123' or 'bug 123' should not be processed (MDLSITE-4019).
             'Bug 123X' => 'Bug 123X',
             'Bug #123X' => 'Bug #123X',
             '<a   href="http://www.google.com.au/">Look for Bug 123</a>' => '<a   href="http://www.google.com.au/">Look for Bug 123</a>',
-
-            // Replaced by the sister (Bug XXXXX) regexp to the tracker. MDLSITE-1146
-            'Bug 123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a>',
-            'Bug #123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug #123</a>',
-            'bUg 123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">bUg 123</a>',
-            '<b>Bug 123</b>' => '<b><a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a></b>',
-            'http://www.google.com.au/search?q=Bug 123' => 'http://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">Bug 123</a>',
+            'Bug 123' => 'Bug 123',
+            'Bug #123' => 'Bug #123',
+            'bUg 123' => 'bUg 123',
+            '<b>Bug 123</b>' => '<b>Bug 123</b>',
+            'http://www.google.com.au/search?q=Bug 123' => 'http://www.google.com.au/search?q=Bug 123',
 
             // Links to other projects (CONTRIB, MDLSITE, MDLQA, MDLTEST, MOBILE)
             'CONTRIB-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/CONTRIB-1234567890">CONTRIB-1234567890</a>',
