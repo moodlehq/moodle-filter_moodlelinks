@@ -1,0 +1,3 @@
+MDTCOMPONENT=filter_moodlelinks
+MDTRELPATH=filter/moodlelinks/
+MDTEXPORT=origin/master
