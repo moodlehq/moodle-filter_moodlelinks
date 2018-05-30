@@ -15,16 +15,33 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin strings are defined here.
+ * Defines {@link \filter_moodlelinks\privacy\provider} class.
  *
  * @package     filter_moodlelinks
- * @category    string
- * @copyright   2011 Eloy Lafuente (stronk7) <stronk7@moodle.org>
+ * @category    privacy
+ * @copyright   2018 David Mudrák <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_moodlelinks\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$string['filtername'] = 'Moodle links filter';
-$string['pluginname'] = 'Moodle links filter';
-$string['privacy:metadata'] = 'Moodle links filter does not store any personal data';
+/**
+ * Privacy API implementation for the Moodle links filter plugin.
+ *
+ * @copyright  2018 David Mudrák <david@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Returns stringid of a text explaining that this plugin stores no personal data.
+     *
+     * @return string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+
+}

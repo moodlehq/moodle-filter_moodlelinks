@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013030100;  // Version of the plugin
-$plugin->release   = '2.4.0';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->requires  = 2011120500; // Moodle 2.2 release and upwards
+$plugin->version = 2018053000;
+$plugin->release = '3.5.0';
+$plugin->maturity = MATURITY_STABLE;
+$plugin->requires = 2018042500;
 $plugin->component = 'filter_moodlelinks';
