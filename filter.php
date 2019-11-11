@@ -45,11 +45,17 @@ class filter_moodlelinks extends moodle_text_filter {
         'moodle tracker' => array('<a title="Auto-link" href="https://tracker.moodle.org">', false, true, 'Moodle Tracker'),
         'moodle jobs' => array('<a title="Auto-link" href="https://moodle.org/jobs">', false, true, 'Moodle jobs'),
         'moodle books' => array('<a title="Auto-link" href="https://moodle.org/books">', false, true, 'Moodle books'),
-        'mooch' => array('<a title="Moodle.net - Courses and content" href="http://moodle.net">', false, true),
-        'moodle.net' => array('<a title="Moodle.net - Courses and content" href="http://moodle.net">', false, true),
+        'mooch' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
+        'moodle.net' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
+        'moodlenet' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
         'planet moodle' => array('<a title="Auto-link" href="http://planet.moodle.org">', false, true, 'Planet Moodle'),
         'moodle plugins' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Moodle plugins'),
         'plugins directory' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Plugins directory'),
+        'moodlecloud' => array('<a title="Auto-link" href="https://moodle.com/cloud/">', false, true, 'MoodleCloud'),
+        'Moodle Users Association' => array('<a title="Auto-link" href="https://moodleassociation.org/">', false, true, 'Moodle Users Association'),
+
+        // Some case-sensitive abbrevs, full matched.
+        'MUA' => array('<a title="Auto-link" href="https://moodleassociation.org/">', true, true),
     );
 
     public function filter($text, array $options = array()) {

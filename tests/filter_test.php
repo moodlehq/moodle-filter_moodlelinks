@@ -59,11 +59,16 @@ class filter_moodlelinks_testcase extends basic_testcase {
             'A MOODLE trackeR:' => 'A <a title="Auto-link" href="https://tracker.moodle.org">Moodle Tracker</a>:',
             'A MOODLE jobs/' => 'A <a title="Auto-link" href="https://moodle.org/jobs">Moodle jobs</a>/',
             '.MOODLE books' => '.<a title="Auto-link" href="https://moodle.org/books">Moodle books</a>',
-            ',MoocH' => ',<a title="Moodle.net - Courses and content" href="http://moodle.net">MoocH</a>',
-            'MoOdLe.NeT' => '<a title="Moodle.net - Courses and content" href="http://moodle.net">MoOdLe.NeT</a>',
+            ',MoocH' => ',<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">MoocH</a>',
+            'MoOdLe.NeT' => '<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">MoOdLe.NeT</a>',
+            'MoodleNET' => '<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">MoodleNET</a>',
             ' planet MOODLE' => ' <a title="Auto-link" href="http://planet.moodle.org">Planet Moodle</a>',
             ': MOODLE plugins' => ': <a title="Auto-link" href="https://moodle.org/plugins">Moodle plugins</a>',
             '[plugins DIRECTORY)' => '[<a title="Auto-link" href="https://moodle.org/plugins">Plugins directory</a>)',
+            'see moodlecloud for details' => 'see <a title="Auto-link" href="https://moodle.com/cloud/">MoodleCloud</a> for details',
+            'The moodle users association.' => 'The <a title="Auto-link" href="https://moodleassociation.org/">Moodle Users Association</a>.',
+            ',MUA site.' => ',<a title="Auto-link" href="https://moodleassociation.org/">MUA</a> site.',
+            'East Midlands Universities Association (EMUA)' => 'East Midlands Universities Association (EMUA)',
             // Verify MDLSITE-1632 (replacements into tags and links) is fixed.
             '<a title="to Moodle Tracker" href="">MDLSITE-111</a>' => '<a title="to Moodle Tracker" href="">MDLSITE-111</a>',
             '<a title="Auto-link" href="">to Moodle Tracker</a>' => '<a title="Auto-link" href="">to Moodle Tracker</a>'
