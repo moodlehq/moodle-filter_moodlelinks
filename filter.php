@@ -53,6 +53,8 @@ class filter_moodlelinks extends moodle_text_filter {
         'plugins directory' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Plugins directory'),
         'moodlecloud' => array('<a title="Auto-link" href="https://moodle.com/cloud/">', false, true, 'MoodleCloud'),
         'Moodle Users Association' => array('<a title="Auto-link" href="https://moodleassociation.org/">', false, true, 'Moodle Users Association'),
+        'moodle academy' => array('<a title="The learning hub for the global Moodle community" href="https://moodle.academy/">', false, true, 'Moodle Academy'),
+        'moodle.academy' => array('<a title="The learning hub for the global Moodle community" href="https://moodle.academy/">', false, true, 'Moodle.Academy'),
 
         // Some case-sensitive abbrevs, full matched.
         'MUA' => array('<a title="Auto-link" href="https://moodleassociation.org/">', true, true),

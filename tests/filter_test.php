@@ -71,7 +71,10 @@ class filter_moodlelinks_testcase extends basic_testcase {
             'East Midlands Universities Association (EMUA)' => 'East Midlands Universities Association (EMUA)',
             // Verify MDLSITE-1632 (replacements into tags and links) is fixed.
             '<a title="to Moodle Tracker" href="">MDLSITE-111</a>' => '<a title="to Moodle Tracker" href="">MDLSITE-111</a>',
-            '<a title="Auto-link" href="">to Moodle Tracker</a>' => '<a title="Auto-link" href="">to Moodle Tracker</a>'
+            '<a title="Auto-link" href="">to Moodle Tracker</a>' => '<a title="Auto-link" href="">to Moodle Tracker</a>',
+            // Test Moodle Academy auto-links.
+            'the Moodle academy' => 'the <a title="The learning hub for the global Moodle community" href="https://moodle.academy/">Moodle Academy</a>',
+            'Visit our moodle.academy site' => 'Visit our <a title="The learning hub for the global Moodle community" href="https://moodle.academy/">Moodle.Academy</a> site',
         );
 
         $filter = new testable_filter_moodlelinks();
