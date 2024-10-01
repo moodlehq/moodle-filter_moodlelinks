@@ -1,3 +1,4 @@
+MDTVERSION=4.5
 MDTCOMPONENT=filter_moodlelinks
 MDTRELPATH=filter/moodlelinks/
 MDTEXPORT=origin/main
