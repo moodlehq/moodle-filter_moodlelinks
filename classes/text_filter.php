@@ -30,34 +30,30 @@ class text_filter extends \core_filters\text_filter {
     // Format: phrase => array(<a> tag, casesensitive, fullmatch, forcephrase).
     protected $links = array(
         // Some are case-sensitive, non full-match
-        'Moodle download' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
-        'download Moodle' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
-        'download page' => array('<a title="Auto-link" href="http://download.moodle.org/">', true, false),
+        'Moodle download' => array('<a title="Auto-link" href="https://download.moodle.org/">', true, false),
+        'download Moodle' => array('<a title="Auto-link" href="https://download.moodle.org/">', true, false),
+        'download page' => array('<a title="Auto-link" href="https://download.moodle.org/">', true, false),
 
         // With this being full-match
         //'Using Moodle' => array('<a title="Auto-link" href="https://moodle.org/course/view.php?id=5">', true, true),
 
         // The rest are case-insensitive and full-match (and using forced phrase)
-        'moodle roadmap' => array('<a title="Auto-link" href="http://docs.moodle.org/dev/Roadmap">', false, true, 'Moodle Roadmap'),
+        'moodle roadmap' => array('<a title="Auto-link" href="https://moodledev.io/general/community/roadmap">', false, true, 'Moodle Roadmap'),
         'moodle themes' => array('<a title="Auto-link" href="https://moodle.org/themes">', false, true, 'Moodle Themes'),
-        'moodle partners' => array('<a title="Auto-link" href="http://moodle.com/partners">', false, true, 'Moodle Partners'),
-        'moodle partner' => array('<a title="Auto-link" href="http://moodle.com/partners">', false, true, 'Moodle Partner'),
+        'moodle partners' => array('<a title="Auto-link" href="https://moodle.com/partners">', false, true, 'Moodle Partners'),
+        'moodle partner' => array('<a title="Auto-link" href="https://moodle.com/partners">', false, true, 'Moodle Partner'),
         'moodle tracker' => array('<a title="Auto-link" href="https://tracker.moodle.org">', false, true, 'Moodle Tracker'),
         'moodle jobs' => array('<a title="Auto-link" href="https://moodle.org/jobs">', false, true, 'Moodle jobs'),
         'moodle books' => array('<a title="Auto-link" href="https://moodle.org/books">', false, true, 'Moodle books'),
         'mooch' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
         'moodle.net' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
         'moodlenet' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
-        'planet moodle' => array('<a title="Auto-link" href="http://planet.moodle.org">', false, true, 'Planet Moodle'),
         'moodle plugins' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Moodle plugins'),
         'plugins directory' => array('<a title="Auto-link" href="https://moodle.org/plugins">', false, true, 'Plugins directory'),
-        'moodlecloud' => array('<a title="Auto-link" href="https://moodle.com/cloud/">', false, true, 'MoodleCloud'),
-        'Moodle Users Association' => array('<a title="Auto-link" href="https://moodleassociation.org/">', false, true, 'Moodle Users Association'),
+        'moodlecloud' => array('<a title="Auto-link" href="https://moodlecloud.com/">', false, true, 'MoodleCloud'),
         'moodle academy' => array('<a title="The learning hub for the global Moodle community" href="https://moodle.academy/">', false, true, 'Moodle Academy'),
         'moodle.academy' => array('<a title="The learning hub for the global Moodle community" href="https://moodle.academy/">', false, true, 'Moodle.Academy'),
 
-        // Some case-sensitive abbrevs, full matched.
-        'MUA' => array('<a title="Auto-link" href="https://moodleassociation.org/">', true, true),
     );
 
     public function filter($text, array $options = array()) {
@@ -91,12 +87,6 @@ class text_filter extends \core_filters\text_filter {
 
         // Let's filter all the filter objects.
         $text = filter_phrases($text, $linklist);
-
-        // Some legacy links to the cvs repository.
-        // TODO: Take them out once the cvs repo is down.
-        $text = preg_replace("|cvs:/([[:alnum:]\./_-]*)([[:alnum:]/])|i",
-                "<a title=\"Auto-link to Moodle CVS repository\" href=\"http://cvs.moodle.org/\\1\\2\">cvs:/$1$2</a>",
-                $text);
 
         // TODO: Add links to the git repository
 
