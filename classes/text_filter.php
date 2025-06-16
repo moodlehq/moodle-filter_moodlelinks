@@ -42,7 +42,7 @@ class text_filter extends \core_filters\text_filter {
         'moodle themes' => array('<a title="Auto-link" href="https://moodle.org/themes">', false, true, 'Moodle Themes'),
         'moodle partners' => array('<a title="Auto-link" href="https://moodle.com/partners">', false, true, 'Moodle Partners'),
         'moodle partner' => array('<a title="Auto-link" href="https://moodle.com/partners">', false, true, 'Moodle Partner'),
-        'moodle tracker' => array('<a title="Auto-link" href="https://tracker.moodle.org">', false, true, 'Moodle Tracker'),
+        'moodle tracker' => array('<a title="Auto-link" href="https://moodle.atlassian.net">', false, true, 'Moodle Tracker'),
         'moodle jobs' => array('<a title="Auto-link" href="https://moodle.org/jobs">', false, true, 'Moodle jobs'),
         'moodle books' => array('<a title="Auto-link" href="https://moodle.org/books">', false, true, 'Moodle books'),
         'mooch' => array('<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">', false, true),
@@ -98,7 +98,7 @@ class text_filter extends \core_filters\text_filter {
                   '(?![^<]*</a>)' . // Try to avoid matching inside another link. Can be fooled by HTML like: <a href="..."><b>MDL-123</b></a>.
                   '#';
         $text = preg_replace($regexp,
-                '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/$0">$0</a>',
+                '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/$0">$0</a>',
                 $text);
 
         return $text;

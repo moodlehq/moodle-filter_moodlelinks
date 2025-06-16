@@ -55,7 +55,7 @@ class text_filter_test extends basic_testcase {
             'A MOODLE themes.' => 'A <a title="Auto-link" href="https://moodle.org/themes">Moodle Themes</a>.',
             'A MOODLE partners,' => 'A <a title="Auto-link" href="https://moodle.com/partners">Moodle Partners</a>,',
             'A MOODLE partner:' => 'A <a title="Auto-link" href="https://moodle.com/partners">Moodle Partner</a>:',
-            'A MOODLE trackeR:' => 'A <a title="Auto-link" href="https://tracker.moodle.org">Moodle Tracker</a>:',
+            'A MOODLE trackeR:' => 'A <a title="Auto-link" href="https://moodle.atlassian.net">Moodle Tracker</a>:',
             'A MOODLE jobs/' => 'A <a title="Auto-link" href="https://moodle.org/jobs">Moodle jobs</a>/',
             '.MOODLE books' => '.<a title="Auto-link" href="https://moodle.org/books">Moodle books</a>',
             ',MoocH' => ',<a title="MoodleNet - Connecting and empowering educators worldwide" href="https://moodle.net">MoocH</a>',
@@ -98,17 +98,17 @@ class text_filter_test extends basic_testcase {
             '<a href="https://example.com/a/very/very/long/url/containing/MDL-123"><br />MDL-123</a>' => '<a href="https://example.com/a/very/very/long/url/containing/MDL-123"><br />MDL-123</a>',
 
             // A known limit of the regexp, we have to live with it (unless somebody fixes it without breaking the rest)
-            'search Google for <a href="https://www.google.com.au/"><b>MDLSITE-0</b></a>' => 'search Google for <a href="https://www.google.com.au/"><b><a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLSITE-0">MDLSITE-0</a></b></a>',
+            'search Google for <a href="https://www.google.com.au/"><b>MDLSITE-0</b></a>' => 'search Google for <a href="https://www.google.com.au/"><b><a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDLSITE-0">MDLSITE-0</a></b></a>',
 
             // Replaced cases by Tim's regexp
-            'MDL-123' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a>',
-            '<b>MDL-123</b>' => '<b><a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a></b>',
-            'See MDL-1 for details!' => 'See <a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-1">MDL-1</a> for details!',
-            'https://www.google.com.au/search?q=MDL-1' => 'https://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-1">MDL-1</a>',
-            '<a href="https://example.com">Link</a>https://www.google.com.au/search?q=MDL-123' => '<a href="https://example.com">Link</a>https://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a>',
-            'search for MDL-123 on <a href="https://www.google.com.au/">Google</a>' => 'search for <a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a> on <a href="https://www.google.com.au/">Google</a>',
-            '<br /> This should be working - MDL-123. Please vote for it if you\'d like... <br />' => '<br /> This should be working - <a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDL-123">MDL-123</a>. Please vote for it if you\'d like... <br />',
-            "The bug 'MDL-123' is > (more serious than)" => "The bug '<a title=\"Auto-link to Moodle Tracker\" href=\"https://tracker.moodle.org/browse/MDL-123\">MDL-123</a>' is > (more serious than)",
+            'MDL-123' => '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-123">MDL-123</a>',
+            '<b>MDL-123</b>' => '<b><a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-123">MDL-123</a></b>',
+            'See MDL-1 for details!' => 'See <a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-1">MDL-1</a> for details!',
+            'https://www.google.com.au/search?q=MDL-1' => 'https://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-1">MDL-1</a>',
+            '<a href="https://example.com">Link</a>https://www.google.com.au/search?q=MDL-123' => '<a href="https://example.com">Link</a>https://www.google.com.au/search?q=<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-123">MDL-123</a>',
+            'search for MDL-123 on <a href="https://www.google.com.au/">Google</a>' => 'search for <a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-123">MDL-123</a> on <a href="https://www.google.com.au/">Google</a>',
+            '<br /> This should be working - MDL-123. Please vote for it if you\'d like... <br />' => '<br /> This should be working - <a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDL-123">MDL-123</a>. Please vote for it if you\'d like... <br />',
+            "The bug 'MDL-123' is > (more serious than)" => "The bug '<a title=\"Auto-link to Moodle Tracker\" href=\"https://moodle.atlassian.net/browse/MDL-123\">MDL-123</a>' is > (more serious than)",
 
             // The texts like 'bug #123' or 'bug 123' should not be processed (MDLSITE-4019).
             'Bug 123X' => 'Bug 123X',
@@ -121,11 +121,11 @@ class text_filter_test extends basic_testcase {
             'https://www.google.com.au/search?q=Bug 123' => 'https://www.google.com.au/search?q=Bug 123',
 
             // Links to other projects (CONTRIB, MDLSITE, MDLQA, MDLTEST, MOBILE)
-            'CONTRIB-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/CONTRIB-1234567890">CONTRIB-1234567890</a>',
-            'MDLSITE-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLSITE-0">MDLSITE-0</a>',
-            'MDLQA-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLQA-0">MDLQA-0</a>',
-            'MDLTEST-0' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MDLTEST-0">MDLTEST-0</a>',
-            'MOBILE-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://tracker.moodle.org/browse/MOBILE-1234567890">MOBILE-1234567890</a>',
+            'CONTRIB-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/CONTRIB-1234567890">CONTRIB-1234567890</a>',
+            'MDLSITE-0' => '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDLSITE-0">MDLSITE-0</a>',
+            'MDLQA-0' => '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDLQA-0">MDLQA-0</a>',
+            'MDLTEST-0' => '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MDLTEST-0">MDLTEST-0</a>',
+            'MOBILE-1234567890' => '<a title="Auto-link to Moodle Tracker" href="https://moodle.atlassian.net/browse/MOBILE-1234567890">MOBILE-1234567890</a>',
         );
 
         $filter = new testable_filter_moodlelinks();
